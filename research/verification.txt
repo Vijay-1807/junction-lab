@@ -1,0 +1,8 @@
+Verification on 2026-11-03:
+- node scripts/build.mjs: passed
+- npm test: 12 passed, 0 failed
+- node scripts/validate-artifact.mjs: valid standalone ESM Worker
+- node scripts/experiment.mjs: regenerated all 20 paired experiment runs
+- Prior live browser QA: guided comparison, replay, density view, methods dialog, collapsed/reopened settings, narrow and desktop layouts passed.
+Public access was explicitly approved and access_mode returned public.
+The required first-prompt line is not satisfied and cannot be retroactively repaired.

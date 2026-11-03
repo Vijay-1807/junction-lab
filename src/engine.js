@@ -1,5 +1,6 @@
 export const DEFAULTS={name:'Bengaluru · evening peak',demand:2200,lanes:2,speed:45,cycle:60,split:50,flyover:false,incident:false,seed:42,duration:600};
 export function validate(input={}){
+ if(input===null||typeof input!=='object'||Array.isArray(input))throw new Error('Scenario must be a JSON object');
  const c={...DEFAULTS,...input};
  for(const [k,min,max] of [['demand',0,6000],['lanes',1,3],['speed',15,60],['cycle',20,120],['split',20,80],['seed',1,999999],['duration',60,900]]) if(typeof c[k]!=='number'||!Number.isFinite(c[k])||c[k]<min||c[k]>max||!Number.isInteger(c[k])) throw new Error(`${k} must be an integer from ${min} to ${max}`);
  for(const k of ['flyover','incident'])if(typeof c[k]!=='boolean')throw new Error(`${k} must be boolean`);
@@ -27,6 +28,7 @@ export function simulate(input){
   let arrivals=c.demand/3600;let count=Math.floor(arrivals)+(random()<arrivals%1?1:0);
   for(let i=0;i<count;i++){const a=bounds[Math.floor(random()*bounds.length)];let b=bounds[Math.floor(random()*bounds.length)];while(b.id===a.id)b=bounds[Math.floor(random()*bounds.length)];pending.push({id:generated++,route:routes[a.id+'>'+b.id],leg:0,p:0,lane:0,v:0,born:t,wait:0,color:Math.floor(random()*5)});}
   for(let i=pending.length-1;i>=0;i--){const v=pending[i],e=net.edges[v.route[0]],l=freeLane(e);if(l>=0){v.lane=l;occupancy.set(key(e.id,l,0),v.id);vehicles.push(v);pending.splice(i,1);}}
+  for(const v of pending)v.wait++;
   const reserved=new Set();vehicles.sort((a,b)=>b.p-a.p||a.id-b.id);
   const finished=new Set();
   for(const v of vehicles){const e=net.edges[v.route[v.leg]];occupancy.delete(key(e.id,v.lane,v.p));let gap=0;for(let p=v.p+1;p<e.length;p++){if(occupancy.has(key(e.id,v.lane,p)))break;gap++;}

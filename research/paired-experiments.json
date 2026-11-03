@@ -14,7 +14,7 @@
       "throughput": 1668,
       "meanTravel": 148.24820143884892,
       "p95Travel": 229,
-      "meanWait": 41.906474820143885,
+      "meanWait": 41.97482014388489,
       "meanSpeed": 23.359608416502446,
       "maxQueue": 43,
       "distanceKm": 306.225
@@ -29,7 +29,7 @@
       "throughput": 1668,
       "meanTravel": 143.91007194244605,
       "p95Travel": 223,
-      "meanWait": 37.44604316546763,
+      "meanWait": 37.5,
       "meanSpeed": 24.0159966918406,
       "maxQueue": 42,
       "distanceKm": 306.5175
@@ -44,7 +44,7 @@
       "throughput": 1662,
       "meanTravel": 148.8303249097473,
       "p95Travel": 230,
-      "meanWait": 42.104693140794225,
+      "meanWait": 42.187725631768956,
       "meanSpeed": 23.332790663255597,
       "maxQueue": 40,
       "distanceKm": 306.5475
@@ -59,7 +59,7 @@
       "throughput": 1650,
       "meanTravel": 148.9090909090909,
       "p95Travel": 229,
-      "meanWait": 42.27272727272727,
+      "meanWait": 42.31636363636363,
       "meanSpeed": 23.14520772479879,
       "maxQueue": 39,
       "distanceKm": 305.9475
@@ -74,7 +74,7 @@
       "throughput": 1734,
       "meanTravel": 148.2249134948097,
       "p95Travel": 216,
-      "meanWait": 41.930795847750865,
+      "meanWait": 42.00692041522491,
       "meanSpeed": 23.15619005754476,
       "maxQueue": 46,
       "distanceKm": 321.9225
@@ -89,7 +89,7 @@
       "throughput": 1728,
       "meanTravel": 145.75347222222223,
       "p95Travel": 216,
-      "meanWait": 39.423611111111114,
+      "meanWait": 39.486111111111114,
       "meanSpeed": 23.496107802686936,
       "maxQueue": 43,
       "distanceKm": 321.12
@@ -104,7 +104,7 @@
       "throughput": 1740,
       "meanTravel": 149.94137931034481,
       "p95Travel": 220,
-      "meanWait": 43.12758620689655,
+      "meanWait": 43.203448275862065,
       "meanSpeed": 22.9894297635605,
       "maxQueue": 45,
       "distanceKm": 321.405
@@ -119,7 +119,7 @@
       "throughput": 1722,
       "meanTravel": 150.14634146341464,
       "p95Travel": 222,
-      "meanWait": 42.069686411149824,
+      "meanWait": 42.13937282229965,
       "meanSpeed": 22.82907253269917,
       "maxQueue": 45,
       "distanceKm": 319.9875
@@ -134,7 +134,7 @@
       "throughput": 1626,
       "meanTravel": 146.71955719557195,
       "p95Travel": 232,
-      "meanWait": 39.85608856088561,
+      "meanWait": 39.952029520295206,
       "meanSpeed": 23.18067871759891,
       "maxQueue": 40,
       "distanceKm": 302.07
@@ -149,7 +149,7 @@
       "throughput": 1638,
       "meanTravel": 145.53479853479854,
       "p95Travel": 236,
-      "meanWait": 38.413919413919416,
+      "meanWait": 38.527472527472526,
       "meanSpeed": 23.524763998448208,
       "maxQueue": 39,
       "distanceKm": 303.195
@@ -164,7 +164,7 @@
       "throughput": 1608,
       "meanTravel": 147.8917910447761,
       "p95Travel": 240,
-      "meanWait": 40.76865671641791,
+      "meanWait": 40.89179104477612,
       "meanSpeed": 22.958063286313383,
       "maxQueue": 41,
       "distanceKm": 301.095
@@ -179,7 +179,7 @@
       "throughput": 1620,
       "meanTravel": 150.26666666666668,
       "p95Travel": 246,
-      "meanWait": 42.303703703703704,
+      "meanWait": 42.403703703703705,
       "meanSpeed": 22.70537782507982,
       "maxQueue": 42,
       "distanceKm": 302.2275
@@ -194,7 +194,7 @@
       "throughput": 1698,
       "meanTravel": 144.23674911660777,
       "p95Travel": 220,
-      "meanWait": 39.851590106007066,
+      "meanWait": 39.89399293286219,
       "meanSpeed": 23.350595262281093,
       "maxQueue": 46,
       "distanceKm": 319.2675
@@ -209,7 +209,7 @@
       "throughput": 1722,
       "meanTravel": 142.71428571428572,
       "p95Travel": 219,
-      "meanWait": 38.18815331010453,
+      "meanWait": 38.23693379790941,
       "meanSpeed": 23.75204673550829,
       "maxQueue": 43,
       "distanceKm": 320.745
@@ -224,7 +224,7 @@
       "throughput": 1692,
       "meanTravel": 146.82978723404256,
       "p95Travel": 220,
-      "meanWait": 41.89007092198582,
+      "meanWait": 41.95744680851064,
       "meanSpeed": 23.001988790453805,
       "maxQueue": 54,
       "distanceKm": 318.06
@@ -239,7 +239,7 @@
       "throughput": 1668,
       "meanTravel": 148.48561151079136,
       "p95Travel": 227,
-      "meanWait": 42.92446043165467,
+      "meanWait": 42.97122302158273,
       "meanSpeed": 22.722019955523194,
       "maxQueue": 47,
       "distanceKm": 320.715
@@ -254,7 +254,7 @@
       "throughput": 1818,
       "meanTravel": 153.77887788778878,
       "p95Travel": 243,
-      "meanWait": 44.366336633663366,
+      "meanWait": 44.462046204620464,
       "meanSpeed": 22.753853214517918,
       "maxQueue": 52,
       "distanceKm": 330.525
@@ -269,7 +269,7 @@
       "throughput": 1836,
       "meanTravel": 150.08496732026143,
       "p95Travel": 236,
-      "meanWait": 40.8921568627451,
+      "meanWait": 40.99673202614379,
       "meanSpeed": 23.24010615876981,
       "maxQueue": 50,
       "distanceKm": 330.81
@@ -284,7 +284,7 @@
       "throughput": 1818,
       "meanTravel": 154.5016501650165,
       "p95Travel": 241,
-      "meanWait": 44.71287128712871,
+      "meanWait": 44.82178217821782,
       "meanSpeed": 22.702324252238522,
       "maxQueue": 48,
       "distanceKm": 331.0125
@@ -299,7 +299,7 @@
       "throughput": 1782,
       "meanTravel": 156.26599326599327,
       "p95Travel": 241,
-      "meanWait": 45.72727272727273,
+      "meanWait": 45.81481481481482,
       "meanSpeed": 22.36673489699724,
       "maxQueue": 53,
       "distanceKm": 330.8475

@@ -68,4 +68,14 @@ The original raw log is in the user's `~/.codex/sessions/`, as specified by the 
 
 ## Verification limits
 
-All 10 automated checks passed, including generated production Worker requests. The deployed app was successfully opened in the in-app browser and a quiet-morning run was verified to update the replay, results and comparison. Narrow-screen visual inspection identified excessive setup scrolling, addressed by collapsible controls and a guided example. Earlier localhost access and Windows Computer Use were blocked; browser verification uses the deployed URL.
+All 12 automated checks passed, including generated production Worker requests. The deployed app was successfully opened in the in-app browser and a quiet-morning run was verified to update the replay, results and comparison. Narrow-screen visual inspection identified excessive setup scrolling, addressed by collapsible controls and a guided example. Earlier localhost access and Windows Computer Use were blocked; browser verification uses the deployed URL.
+
+## Submission package
+
+The app is public with explicit owner approval. Read SUBMISSION.md for a reviewer walkthrough and the unresolved first-prompt rule. Create local submission files after committing with:
+
+```sh
+node scripts/package-submission.mjs --log /absolute/path/to/original-session.jsonl --out /absolute/path/outside-the-repository
+```
+
+This generates a source ZIP, full git-history bundle, unchanged raw-log snapshot and SHA-256 manifest. No raw log is deployed. Rerun after the chat ends to include later records.
