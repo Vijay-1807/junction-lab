@@ -17,7 +17,8 @@ export function network(c){
 }
 function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function route(net,start,end){const dist={[start]:0},prev={},todo=new Set(net.nodes.map(n=>n.id));while(todo.size){let u=[...todo].sort((a,b)=>(dist[a]??Infinity)-(dist[b]??Infinity))[0];if(!Number.isFinite(dist[u]))break;todo.delete(u);if(u===end)break;for(const e of net.edges.filter(e=>e.from===u&&!e.closed)){const d=dist[u]+e.length/(e.maxSpeed*e.lanes);if(d<(dist[e.to]??Infinity)){dist[e.to]=d;prev[e.to]=e;}}}let path=[],v=end;while(v!==start){const e=prev[v];if(!e)return null;path.unshift(e.id);v=e.from;}return path;}
-export function green(edge,t,c){if(edge.to==='2,2'&&edge.horizontal&&c.flyover)return true;const [x,y]=edge.to.split(',').map(Number);const phase=(t+(x+y)*7)%c.cycle,cut=c.cycle*c.split/100;return edge.horizontal?phase<cut-2:phase>=cut&&phase<c.cycle-2;}
+export function green(edge,t,c){const [x,y]=edge.to.split(',').map(Number);const phase=(t+(x+y)*7)%c.cycle,cut=c.cycle*c.split/100;return edge.horizontal?phase<cut-2:phase>=cut&&phase<c.cycle-2;}
+export function usesFlyover(edge,next,c){return Boolean(c.flyover&&edge.to==='2,2'&&edge.horizontal&&next?.horizontal);}
 export function simulate(input){
  const c=validate(input),net=network(c),random=rng(c.seed),motionRandom=rng(c.seed+987654),bounds=net.nodes.filter(n=>n.boundary),routes={};
  for(const a of bounds)for(const b of bounds)if(a.id!==b.id)routes[a.id+'>'+b.id]=route(net,a.id,b.id);
@@ -27,15 +28,15 @@ export function simulate(input){
  for(let t=0;t<c.duration;t++){
   let arrivals=c.demand/3600;let count=Math.floor(arrivals)+(random()<arrivals%1?1:0);
   for(let i=0;i<count;i++){const a=bounds[Math.floor(random()*bounds.length)];let b=bounds[Math.floor(random()*bounds.length)];while(b.id===a.id)b=bounds[Math.floor(random()*bounds.length)];pending.push({id:generated++,route:routes[a.id+'>'+b.id],leg:0,p:0,lane:0,v:0,born:t,wait:0,color:Math.floor(random()*5)});}
-  for(let i=pending.length-1;i>=0;i--){const v=pending[i],e=net.edges[v.route[0]],l=freeLane(e);if(l>=0){v.lane=l;occupancy.set(key(e.id,l,0),v.id);vehicles.push(v);pending.splice(i,1);}}
+  for(let i=0;i<pending.length;){const v=pending[i],e=net.edges[v.route[0]],l=freeLane(e);if(l>=0){v.lane=l;occupancy.set(key(e.id,l,0),v.id);vehicles.push(v);pending.splice(i,1);}else i++;}
   for(const v of pending)v.wait++;
   const reserved=new Set();vehicles.sort((a,b)=>b.p-a.p||a.id-b.id);
   const finished=new Set();
   for(const v of vehicles){const e=net.edges[v.route[v.leg]];occupancy.delete(key(e.id,v.lane,v.p));let gap=0;for(let p=v.p+1;p<e.length;p++){if(occupancy.has(key(e.id,v.lane,p)))break;gap++;}
    let step=Math.min(v.v+1,e.maxSpeed,gap);if(step>0&&motionRandom()<0.12)step--;
    const boundary=net.nodes.find(n=>n.id===e.to).boundary;
-   if(v.p===e.length-1){const next=net.edges[v.route[v.leg+1]],slot=c.flyover&&e.horizontal&&e.to==='2,2'?'flyover':e.to;
-    const canCross=boundary||green(e,t,c);const l=next?freeLane(next):-1;
+   if(v.p===e.length-1){const next=net.edges[v.route[v.leg+1]],bridge=usesFlyover(e,next,c),slot=bridge?'flyover:'+e.from:e.to;
+    const canCross=boundary||bridge||green(e,t,c);const l=next?freeLane(next):-1;
     if(canCross&&!reserved.has(slot)&&(!next||l>=0)){reserved.add(slot);if(!next){completed++;trips.push(t-v.born+1);waitTotal+=v.wait;finished.add(v.id);continue;}v.leg++;v.p=0;v.lane=l;v.v=1;distance+=7.5;}
     else{v.v=0;v.wait++;}
    }else{v.p+=step;v.v=step;distance+=step*7.5;if(step===0)v.wait++;}
@@ -47,5 +48,5 @@ export function simulate(input){
   if(t%10===9)series.push({t:t+1,queue,active:vehicles.length,completed,speed:vehicles.length?vehicles.reduce((a,v)=>a+v.v*27,0)/vehicles.length:0});
  }
  const sorted=[...trips].sort((a,b)=>a-b),perEdge=net.edges.map(e=>({id:e.id,vehicles:vehicles.filter(v=>v.route[v.leg]===e.id).length,stopped:vehicles.filter(v=>v.route[v.leg]===e.id&&v.v===0).length}));
- return {version:'1.0.0',config:c,network:net,frames,series,metrics:{generated,completed,active:vehicles.length,pending:pending.length,throughput:completed*3600/c.duration,meanTravel:trips.length?trips.reduce((a,b)=>a+b,0)/trips.length:null,p95Travel:trips.length?sorted[Math.ceil(sorted.length*.95)-1]:null,meanWait:completed?waitTotal/completed:null,meanSpeed:speedSamples?speedTotal/speedSamples:0,maxQueue,distanceKm:distance/1000},perEdge};
+ return {version:'1.1.0',config:c,network:net,frames,series,metrics:{generated,completed,active:vehicles.length,pending:pending.length,throughput:completed*3600/c.duration,meanTravel:trips.length?trips.reduce((a,b)=>a+b,0)/trips.length:null,p95Travel:trips.length?sorted[Math.ceil(sorted.length*.95)-1]:null,meanWait:completed?waitTotal/completed:null,meanSpeed:speedSamples?speedTotal/speedSamples:0,maxQueue,distanceKm:distance/1000},perEdge};
 }

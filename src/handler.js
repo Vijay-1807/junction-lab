@@ -2,7 +2,7 @@ import {simulate,DEFAULTS} from './engine.js';
 import {PAGE} from './page.js';
 export async function handle(request){
  const url=new URL(request.url),json=(v,status=200)=>new Response(JSON.stringify(v),{status,headers:{'content-type':'application/json','cache-control':'no-store'}});
- if(url.pathname==='/api/health')return json({ok:true,model:'junction-cell-v1'});
+ if(url.pathname==='/api/health')return json({ok:true,model:'junction-cell-v1',version:'1.1.0'});
  if(url.pathname==='/api/defaults')return json(DEFAULTS);
  if(url.pathname==='/api/simulate'){
   if(request.method!=='POST')return json({error:'Use POST'},405);

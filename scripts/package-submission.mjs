@@ -21,10 +21,11 @@ execFileSync('git',['archive','--format=zip','--prefix=junction-lab/','--output=
 execFileSync('git',['bundle','create',path.join(out,'junction-lab-history.bundle'),'--all'],{cwd:root,windowsHide:true});
 writeFileSync(path.join(out,'session.jsonl'),bytes);
 copyFileSync(path.join(root,'SUBMISSION.md'),path.join(out,'READ-ME-FIRST.md'));
+copyFileSync(path.join(root,'REQUIREMENTS.md'),path.join(out,'REQUIREMENTS.md'));
 writeFileSync(path.join(out,'git-history.txt'),git('log','--format=fuller','--stat')+'\n');
 writeFileSync(path.join(out,'REFRESH-LOG.txt'),'After this chat ends, run from the source folder:\nnode scripts/package-submission.mjs --log '+JSON.stringify(logPath)+' --out '+JSON.stringify(out)+'\nThis copies the original bytes without editing the log.\n');
 for(const name of ['verification.txt','live-verification.json'])if(existsSync(path.join(root,'research',name)))copyFileSync(path.join(root,'research',name),path.join(out,name));
-const names=['junction-lab-source.zip','junction-lab-history.bundle','session.jsonl','READ-ME-FIRST.md','git-history.txt','REFRESH-LOG.txt','verification.txt','live-verification.json'].filter(n=>existsSync(path.join(out,n)));
+const names=['junction-lab-source.zip','junction-lab-history.bundle','session.jsonl','READ-ME-FIRST.md','REQUIREMENTS.md','git-history.txt','REFRESH-LOG.txt','verification.txt','live-verification.json'].filter(n=>existsSync(path.join(out,n)));
 const files=names.map(name=>{const b=readFileSync(path.join(out,name));return {name,bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')};});
 const manifest={exportedAt:new Date().toISOString(),site:'https://junction-lab-quest-2026.simplescout.chatgpt.site/',commit,commitTime,sessionStartedAt:started,hoursToFinalCommit:elapsedHours,within72Hours:Number.isFinite(elapsedHours)&&elapsedHours>=0&&elapsedHours<=72,requiredOpeningLineSatisfied:false,log:'Unedited byte snapshot after final source commit; chat may append later records.',files};
 writeFileSync(path.join(out,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');

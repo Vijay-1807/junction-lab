@@ -54,7 +54,7 @@ Links contain 32 cells of 7.5 m: 240 m each. Local roads have one lane per direc
 
 Arrivals use a seeded fractional Bernoulli process, independent from movement randomness. Paired configurations preserve arrival count and origin/destination draws. Origins/destinations are distinct random boundary points. Fixed shortest routes minimize length / (maximum speed x lanes); closed links are excluded. This is a capacity proxy, not equilibrium route assignment.
 
-Fixed signals alternate directions, staggered by junction, with two clearance seconds per phase. One surface vehicle may cross each junction per second if downstream space is available. The central flyover gives east-west approaches an independent unsignalized reservation. It is an idealized grade separation: turn arcs, turning conflict geometry, ramps and merging are absent. Adding arterial lanes increases link storage but does not increase the surface junction reservation rate. Pedestrians, public transit, real geographic data and empirical calibration are absent.
+Fixed signals alternate directions, staggered by junction, with two clearance seconds per phase. One surface vehicle may cross each junction per second if downstream space is available. The central flyover gives straight east-west trips independent unsignalized reservations by direction; turns still obey surface signals. It is an idealized grade separation: turn arcs, turning conflict geometry, ramps and merging are absent. Adding arterial lanes increases link storage but does not increase the surface junction reservation rate. Pedestrians, public transit, real geographic data and empirical calibration are absent.
 
 Generated = completed + active + pending. Travel and wait statistics use completed trips only, including entry wait. Always inspect unfinished trips to avoid completion bias. Throughput normalizes completed trips over the entire interval. No warm-up is discarded. Replay samples every two seconds; metrics use every step. Five-seed paired records are supplied without claims of statistical significance. This is an exploratory educational prototype, not a validated city forecast or SUMO integration.
 
@@ -68,7 +68,7 @@ The original raw log is in the user's `~/.codex/sessions/`, as specified by the 
 
 ## Verification limits
 
-All 12 automated checks passed, including generated production Worker requests. The deployed app was successfully opened in the in-app browser and a quiet-morning run was verified to update the replay, results and comparison. Narrow-screen visual inspection identified excessive setup scrolling, addressed by collapsible controls and a guided example. Earlier localhost access and Windows Computer Use were blocked; browser verification uses the deployed URL.
+All 13 automated checks passed, including generated production Worker requests. The deployed app was successfully opened in the in-app browser and a quiet-morning run was verified to update the replay, results and comparison. Narrow-screen visual inspection identified excessive setup scrolling, addressed by collapsible controls and a guided example. Earlier localhost access and Windows Computer Use were blocked; browser verification uses the deployed URL.
 
 ## Submission package
 
@@ -79,3 +79,7 @@ node scripts/package-submission.mjs --log /absolute/path/to/original-session.jso
 ```
 
 This generates a source ZIP, full git-history bundle, unchanged raw-log snapshot and SHA-256 manifest. No raw log is deployed. Rerun after the chat ends to include later records.
+
+## Version 1.1 audit and usability update
+
+See REQUIREMENTS.md for the full Project 2 and application-rule audit. Version 1.1 fixes arrival-queue admission order and restricts the flyover to straight-through traffic. Old pinned comparisons from version 1.0 are ignored so results from different models are not mixed. The UI adds a keyboard-accessible road inspector, effective-speed display, occupancy legend, reduced-motion handling, imported-duration support, clearer type and larger controls. Browser checks cover 360 px and desktop layouts. The headline uses Georgia and controls use a system sans-serif stack; no external font service is required.
