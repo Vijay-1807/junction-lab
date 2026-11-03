@@ -4,9 +4,7 @@ Live application: https://junction-lab-sepia.vercel.app/
 
 Public source: https://github.com/Vijay-1807/junction-lab
 
-Alternate existing deployment: https://junction-lab-quest-2026.simplescout.chatgpt.site/
-
-Access was changed to public with the applicant's explicit approval on 3 November 2026. The demo uses synthetic data only; the session log is never served by the application.
+The demo is public and uses synthetic data. The session log is never served by the application.
 
 ## Reviewer walkthrough (about two minutes)
 
@@ -28,11 +26,11 @@ See README.md for commands, API schema, model details and verification limits. T
 
 Version 1.1 includes the refreshed typography, mobile/tablet/desktop checks, a keyboard-accessible road inspector, and a density-specific legend. Flyover access is limited to straight traffic, entrance admission is first-in-first-out, and old version 1.0 baselines are ignored. There are 15 automated checks, including the Vercel adapters and generated static UI. REQUIREMENTS.md maps each Project 2 requirement to its implementation and lists the model limits.
 
-## Rule audit: unresolved opening-line violation
+## Application rule status
 
-The first task prompt in this chat did **not** begin with `QUEST Lab Full Stack AI Pre-doctoral application, [name], [date]`. This is a historical fact and cannot be fixed by modifying the prompt, a file, a commit, or the raw log. This package must not be represented as fully compliant with that rule. Technical readiness does not establish application eligibility; the lab may reject this session on that basis.
+The first task prompt did not begin with the required `QUEST Lab Full Stack AI Pre-doctoral application, [name], [date]` line. This requirement is unmet and cannot be corrected retroactively. The raw log is preserved, and no claim of full rule compliance is made.
 
-All code changes and git operations for this project were made in this chat. The packaging script calculates elapsed time from the session metadata to the final git commit and reports whether it is within 72 hours. It does not backdate commits or fabricate session history.
+Development and commits occurred in this chat. The package manifest records elapsed session-start-to-commit time for the 72-hour rule. No application form has been submitted.
 
 ## Log handling
 

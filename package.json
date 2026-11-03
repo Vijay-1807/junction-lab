@@ -6,7 +6,8 @@
     "start": "node server.mjs",
     "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
-    "build:vercel": "node scripts/build-vercel.mjs"
+    "build:vercel": "node scripts/build-vercel.mjs",
+    "pretest": "node scripts/build.mjs && node scripts/build-vercel.mjs"
   },
   "engines": {
     "node": "22.x"

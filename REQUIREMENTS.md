@@ -11,7 +11,7 @@ Only one project is required by the supplied notice. This submission selects **P
 | Different widths and capacities | Single-lane local roads and 1-3-lane arterials; finite lane-cell storage and parallel road movement. |
 | Users set up scenarios | Presets, demand, lane width, requested speed with effective model speed, signal cycle/split, flyover, closure, seed and duration. |
 | Users see results | Vehicle/density replay, scrubber, road inspector, queue chart, completed/unfinished trips, average journey, throughput and peak queue. |
-| Full-stack deployment | Browser UI calls a deployed Worker API; no mock result values. Public URL in SUBMISSION.md. |
+| Full-stack deployment | Browser UI calls a deployed simulation API; no mock result values. Public URL in SUBMISSION.md. |
 | Reproducibility | Seeded arrivals and movement, baseline comparisons, scenario JSON import/export, five-seed experiments, source ZIP and full git-history bundle. |
 | Verification | 15 automated tests, standalone Worker validation, browser checks at mobile and desktop sizes. Check `research/verification.txt` and submission live verification report. |
 
@@ -27,6 +27,6 @@ Only one project is required by the supplied notice. This submission selects **P
 
 ## Scope and limitations
 
-The project requirements are implemented as an exploratory simulation. This does not establish application eligibility. The missing opening line remains a known rule violation.
+The project requirements are implemented as an exploratory simulation. Application rule status is recorded above and in SUBMISSION.md.
 
-The network is not extracted from real Bengaluru streets and is not calibrated to observed traffic. The cell model quantizes speed to 27/54 km/h, uses fixed routes, omits lane changes and detailed turning/merge geometry, and uses a simplified one-crossing-per-second surface junction capacity. These limits appear in the app and README. Results are scenario experiments, not validated transport forecasts. No claim of a perfect or defect-free implementation is made.
+The network is not extracted from real Bengaluru streets and is not calibrated to observed traffic. The cell model quantizes speed to 27/54 km/h, uses fixed routes, omits lane changes and detailed turning/merge geometry, and uses a simplified one-crossing-per-second surface junction capacity. These limits appear in the app and README. Results are scenario experiments, not validated transport forecasts. See MODEL.md for metric definitions and interpretation.

@@ -6,3 +6,5 @@ Verification on 2026-11-03, version 1.1.0:
 - Vercel is deployed at https://junction-lab-sepia.vercel.app/. Seven full API responses matched the source exactly; browser interaction and responsive checks passed.
 - No raw session logs or credentials are included in public source.
 Public Sites deployment remains available. The required first-prompt line remains unmet.
+
+Final reproducibility review: npm test passed all 15 checks in a new source-only directory with no existing build artifacts. pretest generates both deployment targets. GitHub Verify workflow runs the same commands on Node.js 22 with read-only permissions.

@@ -1,92 +1,66 @@
 # Junction Lab
 
-Full-stack traffic scenario studio for QUEST project 2. A synthetic network contains 9 signalized junctions, 12 boundary entrances/exits and 48 directed roads. Configure lane widths, demand, signals, a central flyover and a road closure; observe individual agents and compare experiments.
+A full-stack traffic experiment studio. Change road capacity, signal timing, a flyover or a closure, then inspect the effect on individual journeys and queues.
 
-Public source: https://github.com/Vijay-1807/junction-lab
+[Open the app](https://junction-lab-sepia.vercel.app/) · [Model and metrics](MODEL.md) · [Project requirement map](REQUIREMENTS.md) · [Deployment guide](VERCEL.md)
 
-Verified Vercel deployment: https://junction-lab-sepia.vercel.app/
+## Try it in two minutes
 
-For Vercel deployment instructions, follow [VERCEL.md](VERCEL.md). It deploys the frontend and backend together.
+1. Click **Try the flyover comparison** to run a baseline and intervention with identical arrivals.
+2. Watch the vehicle replay, switch to density, or choose a road to inspect its lanes, storage and queue.
+3. Read the comparison, including unfinished trips. Then change one setting and run again.
+4. Export the scenario JSON to save the inputs; import it to reproduce the run.
 
-## Run and verify
+The backend calculates each run. The animation replays a synthetic simulation; it is not live road traffic.
 
-Requires Node.js 22+. No dependencies, API keys, map service or downloaded dataset.
+## Run locally
+
+Use Node.js 22.x. No dependencies, API keys or environment variables are required.
 
 ```sh
+git clone https://github.com/Vijay-1807/junction-lab.git
+cd junction-lab
 npm start
 # Open http://127.0.0.1:4173
-npm run build
-npm run build:vercel
-npm test
-node scripts/experiment.mjs
 ```
-
-Build before testing: artifact tests exercise the generated Worker. `dist/server/index.js` runs on Cloudflare Workers; the local Node server uses the same HTTP handler and model.
-
-## Workflow
-
-Click **Try the flyover comparison** to run a baseline and intervention automatically, using the same arrivals. Read the plain-language summary and scenario comparison. On small screens, open **Change demand, roads & signals** to customize inputs. For manual experiments, run a preset, play/pause/scrub or speed up the replay, switch density view, and click roads to inspect lane storage. Pin a baseline, change one parameter, run again, and compare. Export JSON to retain the scenario, computed metrics, time series, per-road occupancy and baseline. Import that file to reproduce a run. Inputs and pinned baseline persist in browser local storage. Replay stops at the end; Play restarts it.
-
-## Source layout
-
-- `src/engine.js`: seeded model, graph, routing, validation and statistics.
-- `src/handler.js`: bounded HTTP API with security headers.
-- `src/page.js`: responsive UI, network Canvas, replay, charts, comparison and import/export.
-- `server.mjs`: local Node adapter.
-- `scripts/build.mjs`: dependency-free single-file Worker build.
-- `tests/`: conservation, exclusive occupancy, closure handling, reproducibility, paired demand, validation, HTTP behavior, inline JavaScript parsing and generated Worker checks.
-- `research/paired-experiments.json` and `.csv`: actual five-seed results for baseline, flyover, one lane and closure. Regenerate with `node scripts/experiment.mjs`.
-
-## API
-
-`GET /api/health` returns health and model identity. `GET /api/defaults` returns defaults. `POST /api/simulate` accepts a JSON scenario and returns configuration, topology, replay frames, time series, final link occupancy and metrics.
-
-| Field | Range / default |
-| --- | --- |
-| demand | integer 0-6000 vehicles/hour; 2200 |
-| lanes | integer 1-3 arterial lanes per direction; 2 |
-| speed | integer 15-60 requested km/h; 45 |
-| cycle | integer 20-120 seconds; 60 |
-| split | integer 20-80% east-west share; 50 |
-| flyover, incident | boolean; false |
-| seed | integer 1-999999; 42 |
-| duration | integer 60-900 seconds; 600 |
-| name | string, max 80 characters |
-
-Invalid input: HTTP 400; oversized body: 413; wrong simulation method: 405; unknown route: 404. Stateless backend, no database. Production high-volume use would need service-level rate limiting, which is not implemented.
-
-## Model and honest limits
-
-Links contain 32 cells of 7.5 m: 240 m each. Local roads have one lane per direction; arterials have 1-3. Each lane-cell stores at most one agent. One-second steps, acceleration by one cell per step, 12% random slowing and no lane changing. Requested speeds quantize to 27 or 54 km/h, so fine speed-limit comparisons are inappropriate.
-
-Arrivals use a seeded fractional Bernoulli process, independent from movement randomness. Paired configurations preserve arrival count and origin/destination draws. Origins/destinations are distinct random boundary points. Fixed shortest routes minimize length / (maximum speed x lanes); closed links are excluded. This is a capacity proxy, not equilibrium route assignment.
-
-Fixed signals alternate directions, staggered by junction, with two clearance seconds per phase. One surface vehicle may cross each junction per second if downstream space is available. The central flyover gives straight east-west trips independent unsignalized reservations by direction; turns still obey surface signals. It is an idealized grade separation: turn arcs, turning conflict geometry, ramps and merging are absent. Adding arterial lanes increases link storage but does not increase the surface junction reservation rate. Pedestrians, public transit, real geographic data and empirical calibration are absent.
-
-Generated = completed + active + pending. Travel and wait statistics use completed trips only, including entry wait. Always inspect unfinished trips to avoid completion bias. Throughput normalizes completed trips over the entire interval. No warm-up is discarded. Replay samples every two seconds; metrics use every step. Five-seed paired records are supplied without claims of statistical significance. This is an exploratory educational prototype, not a validated city forecast or SUMO integration.
-
-Junction design informed by [SUMO intersections documentation](https://sumo.dlr.de/docs/Simulation/Intersections.html).
-
-## Application integrity
-
-Development and git operations happened in this Codex chat on 3 November 2026. The chat did NOT start with the required `QUEST Lab Full Stack AI Pre-doctoral application, [name], [date]` line. Editing a README, commit or session log cannot repair that rule; do not claim compliance.
-
-The original raw log is in the user's `~/.codex/sessions/`, as specified by the application notice. No edited/reconstructed log is supplied or uploaded to the deployed app. The running log continues to change until the chat ends. Preserve the actual original for any submission. No application form was submitted.
-
-## Verification limits
-
-All 15 automated checks passed, including generated production Worker requests. The deployed app was successfully opened in the in-app browser and a quiet-morning run was verified to update the replay, results and comparison. Narrow-screen visual inspection identified excessive setup scrolling, addressed by collapsible controls and a guided example. Earlier localhost access and Windows Computer Use were blocked; browser verification uses the deployed URL.
-
-## Submission package
-
-The app is public with explicit owner approval. Read SUBMISSION.md for a reviewer walkthrough and the unresolved first-prompt rule. Create local submission files after committing with:
 
 ```sh
-node scripts/package-submission.mjs --log /absolute/path/to/original-session.jsonl --out /absolute/path/outside-the-repository
+npm test                         # builds both targets, then runs all 15 checks
+node scripts/validate-artifact.mjs
+node scripts/experiment.mjs       # regenerate the five-seed comparisons
 ```
 
-This generates a source ZIP, full git-history bundle, unchanged raw-log snapshot and SHA-256 manifest. No raw log is deployed. Rerun after the chat ends to include later records.
+## What is implemented
 
-## Version 1.1 audit and usability update
+- Individual vehicles, fixed routes, signal phases, finite lane storage and downstream blocking.
+- Nine junctions, twelve gateways and forty-eight directed road links.
+- Single-lane local streets and configurable main-road widths; a through-only flyover and closure routing.
+- Seeded demand, scenario presets, replay controls, road inspection, charts and paired comparisons.
+- JSON import/export and browser-local scenario persistence.
+- Public Vercel frontend and server APIs using the same model as the local server and Worker target.
 
-See REQUIREMENTS.md for the full Project 2 and application-rule audit. Version 1.1 fixes arrival-queue admission order and restricts the flyover to straight-through traffic. Old pinned comparisons from version 1.0 are ignored so results from different models are not mixed. The UI adds a keyboard-accessible road inspector, effective-speed display, occupancy legend, reduced-motion handling, imported-duration support, clearer type and larger controls. Browser checks cover 360 px and desktop layouts. The headline uses Georgia and controls use a system sans-serif stack; no external font service is required.
+## Architecture
+
+| Component | Location |
+| --- | --- |
+| Simulation, routing, validation and metrics | `src/engine.js` |
+| Shared HTTP handler | `src/handler.js` |
+| Responsive UI and replay | `src/page.js` |
+| Vercel server functions | `api/` |
+| Local server | `server.mjs` |
+| Vercel / Worker builds | `scripts/build-vercel.mjs`, `scripts/build.mjs` |
+| Invariants, APIs and deployment adapters | `tests/` |
+
+`GET /api/health` reports model identity. `GET /api/defaults` returns a valid scenario. `POST /api/simulate` accepts JSON and returns configuration, topology, replay frames, time series, link occupancy and summary metrics. Invalid scenarios return 400, oversized requests 413, unsupported simulation methods 405 and unknown routes 404.
+
+## Evidence and interpretation
+
+The fifteen tests cover determinism, vehicle conservation, exclusive lane-cell occupancy, closures, through-only flyover access, invalid inputs, API behavior and both deployment targets. GitHub Actions runs the build and tests from a fresh checkout.
+
+[Recorded Vercel checks](research/vercel-verification.json) compare seven complete responses against the source model, including maximum load, another seed and zero demand. [Paired experiments](research/paired-experiments.csv) preserve twenty computed runs across five seeds.
+
+The model is intentionally small: it uses synthetic topology, coarse speed cells and simplified junctions, with no empirical calibration. Read [MODEL.md](MODEL.md) before interpreting its results as real-world effects.
+
+## Application materials
+
+[SUBMISSION.md](SUBMISSION.md) provides the reviewer walkthrough, raw-log handling instructions and the known unmet opening-line requirement. The original session log and complete git history remain unchanged. Logs, credentials and local submission archives are excluded from public source and deployment assets.
