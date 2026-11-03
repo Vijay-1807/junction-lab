@@ -18,7 +18,7 @@ Build before testing: artifact tests exercise the generated Worker. `dist/server
 
 ## Workflow
 
-Run a preset, play/pause/scrub or speed up the replay, switch density view, and click roads to inspect lane storage. Pin a baseline, change one parameter, run again, and compare. Export JSON to retain the scenario, computed metrics, time series, per-road occupancy and baseline. Import that file to reproduce a run. Inputs and pinned baseline persist in browser local storage.
+Click **Try the flyover comparison** to run a baseline and intervention automatically, using the same arrivals. Read the plain-language summary and scenario comparison. On small screens, open **Change demand, roads & signals** to customize inputs. For manual experiments, run a preset, play/pause/scrub or speed up the replay, switch density view, and click roads to inspect lane storage. Pin a baseline, change one parameter, run again, and compare. Export JSON to retain the scenario, computed metrics, time series, per-road occupancy and baseline. Import that file to reproduce a run. Inputs and pinned baseline persist in browser local storage. Replay stops at the end; Play restarts it.
 
 ## Source layout
 
@@ -68,4 +68,4 @@ The original raw log is in the user's `~/.codex/sessions/`, as specified by the 
 
 ## Verification limits
 
-All 10 automated checks passed, including generated production Worker requests. Visual QA was attempted but remains incomplete: the in-app browser timed out reaching localhost, and Windows Computer Use stopped because it could not confidently verify the browser URL. Responsive layout and keyboard controls are implemented but visually unverified.
+All 10 automated checks passed, including generated production Worker requests. The deployed app was successfully opened in the in-app browser and a quiet-morning run was verified to update the replay, results and comparison. Narrow-screen visual inspection identified excessive setup scrolling, addressed by collapsible controls and a guided example. Earlier localhost access and Windows Computer Use were blocked; browser verification uses the deployed URL.
