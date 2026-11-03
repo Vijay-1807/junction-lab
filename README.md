@@ -4,7 +4,9 @@ Full-stack traffic scenario studio for QUEST project 2. A synthetic network cont
 
 Public source: https://github.com/Vijay-1807/junction-lab
 
-For later Vercel deployment, follow [VERCEL.md](VERCEL.md). It deploys the frontend and backend together.
+Verified Vercel deployment: https://junction-lab-sepia.vercel.app/
+
+For Vercel deployment instructions, follow [VERCEL.md](VERCEL.md). It deploys the frontend and backend together.
 
 ## Run and verify
 

@@ -18,6 +18,6 @@ npm run build
 npm test
 ```
 
-The adapter and static output are tested locally. A Vercel-hosted deployment has not been performed in this session, at the applicant's request. No claim of successful Vercel hosting is made before that step.
+The applicant deployed https://junction-lab-sepia.vercel.app/. It was verified on 3 November 2026 without authentication. Seven scenarios, including maximum load and zero demand, returned metrics and replay frames identical to the local source model. Invalid inputs and methods were rejected correctly. The guided comparison, road inspector, density legend, pause/scrub controls, browser console and mobile/tablet/desktop layout bounds were checked. See research/vercel-verification.json. These are computed synthetic simulations and replays, not live road observations.
 
 Official references: [Node.js functions](https://vercel.com/docs/functions/runtimes/node-js), [Vercel configuration](https://vercel.com/docs/project-configuration/vercel-json).

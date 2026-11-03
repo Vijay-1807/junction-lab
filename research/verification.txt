@@ -3,6 +3,6 @@ Verification on 2026-11-03, version 1.1.0:
 - npm test: 15 passed, 0 failed, including shared Vercel function exports and generated frontend.
 - Prior browser QA: guided comparison, road inspector, density legend and responsive checks at 360/768/1440 px.
 - Model: FIFO admissions; through-only flyover; model-version-aware baseline comparisons.
-- Vercel has not been deployed, per the applicant's request; its adapters are tested locally.
+- Vercel is deployed at https://junction-lab-sepia.vercel.app/. Seven full API responses matched the source exactly; browser interaction and responsive checks passed.
 - No raw session logs or credentials are included in public source.
 Public Sites deployment remains available. The required first-prompt line remains unmet.

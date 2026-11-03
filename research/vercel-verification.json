@@ -1,0 +1,140 @@
+{
+  "checkedAt": "2026-11-03T08:20:04.803Z",
+  "site": "https://junction-lab-sepia.vercel.app",
+  "version": "1.1.0",
+  "authentication": "No cookies or authorization headers",
+  "homepage": 200,
+  "securityHeadersPresent": true,
+  "defaultsMatchSource": true,
+  "invalidInputsRejected": true,
+  "runs": [
+    {
+      "name": "baseline",
+      "config": {
+        "duration": 600
+      },
+      "status": 200,
+      "elapsedMs": 724,
+      "responseBytes": 457640,
+      "generated": 366,
+      "completed": 270,
+      "meanTravel": 154.97407407407408,
+      "maxQueue": 45,
+      "allResultsMatchSource": true
+    },
+    {
+      "name": "flyover",
+      "config": {
+        "duration": 600,
+        "flyover": true
+      },
+      "status": 200,
+      "elapsedMs": 526,
+      "responseBytes": 456547,
+      "generated": 366,
+      "completed": 270,
+      "meanTravel": 153.61851851851853,
+      "maxQueue": 45,
+      "allResultsMatchSource": true
+    },
+    {
+      "name": "closure",
+      "config": {
+        "duration": 300,
+        "incident": true
+      },
+      "status": 200,
+      "elapsedMs": 775,
+      "responseBytes": 192407,
+      "generated": 183,
+      "completed": 84,
+      "meanTravel": 146.4047619047619,
+      "maxQueue": 42,
+      "allResultsMatchSource": true
+    },
+    {
+      "name": "one-lane",
+      "config": {
+        "duration": 300,
+        "lanes": 1,
+        "split": 70
+      },
+      "status": 200,
+      "elapsedMs": 775,
+      "responseBytes": 193000,
+      "generated": 183,
+      "completed": 87,
+      "meanTravel": 145.51724137931035,
+      "maxQueue": 48,
+      "allResultsMatchSource": true
+    },
+    {
+      "name": "different-seed",
+      "config": {
+        "duration": 300,
+        "seed": 73
+      },
+      "status": 200,
+      "elapsedMs": 716,
+      "responseBytes": 186972,
+      "generated": 183,
+      "completed": 96,
+      "meanTravel": 135.77083333333334,
+      "maxQueue": 40,
+      "allResultsMatchSource": true
+    },
+    {
+      "name": "zero-demand",
+      "config": {
+        "duration": 60,
+        "demand": 0
+      },
+      "status": 200,
+      "elapsedMs": 266,
+      "responseBytes": 11839,
+      "generated": 0,
+      "completed": 0,
+      "meanTravel": null,
+      "maxQueue": 0,
+      "allResultsMatchSource": true
+    },
+    {
+      "name": "maximum-load",
+      "config": {
+        "duration": 900,
+        "demand": 6000,
+        "lanes": 1,
+        "cycle": 120,
+        "split": 80
+      },
+      "status": 200,
+      "elapsedMs": 2374,
+      "responseBytes": 3348069,
+      "generated": 1517,
+      "completed": 606,
+      "meanTravel": 262.516501650165,
+      "maxQueue": 891,
+      "allResultsMatchSource": true
+    }
+  ],
+  "sourceCommit": "2ad433bd03eb2e8879fbf2803c423b173e700dc3",
+  "github": {
+    "visibility": "PUBLIC",
+    "verifiedSourceFiles": 28,
+    "matchesLocal": true,
+    "deploymentStatus": "success"
+  },
+  "browser": {
+    "guidedComparison": true,
+    "roadInspector": true,
+    "densityLegend": true,
+    "pauseAndScrub": true,
+    "consoleErrors": 0,
+    "responsiveWidths": [
+      360,
+      768,
+      1440
+    ],
+    "noHorizontalOverflow": true
+  }
+}

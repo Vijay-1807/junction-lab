@@ -1,6 +1,10 @@
 # QUEST Project 2: Junction Lab
 
-Live application: https://junction-lab-quest-2026.simplescout.chatgpt.site/
+Live application: https://junction-lab-sepia.vercel.app/
+
+Public source: https://github.com/Vijay-1807/junction-lab
+
+Alternate existing deployment: https://junction-lab-quest-2026.simplescout.chatgpt.site/
 
 Access was changed to public with the applicant's explicit approval on 3 November 2026. The demo uses synthetic data only; the session log is never served by the application.
 
