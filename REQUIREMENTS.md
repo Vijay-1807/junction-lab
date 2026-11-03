@@ -13,7 +13,7 @@ Only one project is required by the supplied notice. This submission selects **P
 | Users see results | Vehicle/density replay, scrubber, road inspector, queue chart, completed/unfinished trips, average journey, throughput and peak queue. |
 | Full-stack deployment | Browser UI calls a deployed Worker API; no mock result values. Public URL in SUBMISSION.md. |
 | Reproducibility | Seeded arrivals and movement, baseline comparisons, scenario JSON import/export, five-seed experiments, source ZIP and full git-history bundle. |
-| Verification | 13 automated tests, standalone Worker validation, browser checks at mobile and desktop sizes. Check `research/verification.txt` and submission live verification report. |
+| Verification | 15 automated tests, standalone Worker validation, browser checks at mobile and desktop sizes. Check `research/verification.txt` and submission live verification report. |
 
 ## Application rules
 

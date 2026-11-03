@@ -1,2 +1,10 @@
 dist/
 site.tar.gz
+public/
+.vercel/
+node_modules/
+.env
+.env.*
+*.jsonl
+*.bundle
+*.tar.gz

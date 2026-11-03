@@ -1,12 +1,8 @@
 Verification on 2026-11-03, version 1.1.0:
-- node scripts/build.mjs: passed
-- npm test: 13 passed, 0 failed
-- node scripts/validate-artifact.mjs: valid standalone ESM Worker
-- node scripts/experiment.mjs: regenerated all 20 paired experiment runs with model 1.1.0
-- Browser QA: guided baseline/flyover comparison and accurate plain-language result; road selector shows lanes, storage and replay queue; density legend switches to occupancy.
-- Responsive QA: document scroll width stays within viewport at 360, 768 and 1440 px. Normal viewport restored after checks.
-- Typography: Georgia headings, system sans-serif controls; no third-party font dependency.
-- Accessibility: skip link, road selection by keyboard, table row/column headers, reduced-motion startup, larger controls; no formal WCAG certification claimed.
-- Model fixes: FIFO entry admission; only through traffic uses flyover; surface turns still obey signals; model-version-aware saved baseline.
-Public access remains enabled with explicit owner approval.
-The required first-prompt line is not satisfied and cannot be retroactively repaired.
+- Worker and Vercel static builds: passed.
+- npm test: 15 passed, 0 failed, including shared Vercel function exports and generated frontend.
+- Prior browser QA: guided comparison, road inspector, density legend and responsive checks at 360/768/1440 px.
+- Model: FIFO admissions; through-only flyover; model-version-aware baseline comparisons.
+- Vercel has not been deployed, per the applicant's request; its adapters are tested locally.
+- No raw session logs or credentials are included in public source.
+Public Sites deployment remains available. The required first-prompt line remains unmet.

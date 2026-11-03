@@ -2,6 +2,10 @@
 
 Full-stack traffic scenario studio for QUEST project 2. A synthetic network contains 9 signalized junctions, 12 boundary entrances/exits and 48 directed roads. Configure lane widths, demand, signals, a central flyover and a road closure; observe individual agents and compare experiments.
 
+Public source: https://github.com/Vijay-1807/junction-lab
+
+For later Vercel deployment, follow [VERCEL.md](VERCEL.md). It deploys the frontend and backend together.
+
 ## Run and verify
 
 Requires Node.js 22+. No dependencies, API keys, map service or downloaded dataset.
@@ -10,6 +14,7 @@ Requires Node.js 22+. No dependencies, API keys, map service or downloaded datas
 npm start
 # Open http://127.0.0.1:4173
 npm run build
+npm run build:vercel
 npm test
 node scripts/experiment.mjs
 ```
@@ -68,7 +73,7 @@ The original raw log is in the user's `~/.codex/sessions/`, as specified by the 
 
 ## Verification limits
 
-All 13 automated checks passed, including generated production Worker requests. The deployed app was successfully opened in the in-app browser and a quiet-morning run was verified to update the replay, results and comparison. Narrow-screen visual inspection identified excessive setup scrolling, addressed by collapsible controls and a guided example. Earlier localhost access and Windows Computer Use were blocked; browser verification uses the deployed URL.
+All 15 automated checks passed, including generated production Worker requests. The deployed app was successfully opened in the in-app browser and a quiet-morning run was verified to update the replay, results and comparison. Narrow-screen visual inspection identified excessive setup scrolling, addressed by collapsible controls and a guided example. Earlier localhost access and Windows Computer Use were blocked; browser verification uses the deployed URL.
 
 ## Submission package
 
