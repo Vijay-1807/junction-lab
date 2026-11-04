@@ -39,3 +39,5 @@ The conservation identity is `generated = completed + active + pending`. Complet
 The model omits lane changes, detailed turn conflicts, ramps/merges, pedestrians, public transit and empirical calibration. It is suitable for inspecting this model's scenario tradeoffs, not for recommending real construction or predicting actual road traffic. A larger public service would also need platform-level rate limiting.
 
 Junction handling was informed by [SUMO's intersection documentation](https://sumo.dlr.de/docs/Simulation/Intersections.html). This project implements its own smaller model; it does not run SUMO.
+
+Time-series exports include the final simulation second even when the duration is not divisible by ten.

@@ -45,7 +45,7 @@ export function simulate(input){
   for(let i=vehicles.length-1;i>=0;i--)if(finished.has(vehicles[i].id))vehicles.splice(i,1);
   const stopped=vehicles.filter(v=>v.v===0).length,queue=stopped+pending.length;maxQueue=Math.max(maxQueue,queue);
   if(t%2===0||t===c.duration-1)frames.push({t:t+1,cars:vehicles.map(v=>[v.id,v.route[v.leg],v.p,v.lane,v.v,v.color]),waiting:pending.length,completed,queue});
-  if(t%10===9)series.push({t:t+1,queue,active:vehicles.length,completed,speed:vehicles.length?vehicles.reduce((a,v)=>a+v.v*27,0)/vehicles.length:0});
+  if(t%10===9||t===c.duration-1)series.push({t:t+1,queue,active:vehicles.length,completed,speed:vehicles.length?vehicles.reduce((a,v)=>a+v.v*27,0)/vehicles.length:0});
  }
  const sorted=[...trips].sort((a,b)=>a-b),perEdge=net.edges.map(e=>({id:e.id,vehicles:vehicles.filter(v=>v.route[v.leg]===e.id).length,stopped:vehicles.filter(v=>v.route[v.leg]===e.id&&v.v===0).length}));
  return {version:'1.1.0',config:c,network:net,frames,series,metrics:{generated,completed,active:vehicles.length,pending:pending.length,throughput:completed*3600/c.duration,meanTravel:trips.length?trips.reduce((a,b)=>a+b,0)/trips.length:null,p95Travel:trips.length?sorted[Math.ceil(sorted.length*.95)-1]:null,meanWait:completed?waitTotal/completed:null,meanSpeed:speedSamples?speedTotal/speedSamples:0,maxQueue,distanceKm:distance/1000},perEdge};

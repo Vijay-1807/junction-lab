@@ -25,7 +25,7 @@ npm start
 ```
 
 ```sh
-npm test                         # builds both targets, then runs all 15 checks
+npm test                         # builds both targets, then runs all 18 checks
 node scripts/validate-artifact.mjs
 node scripts/experiment.mjs       # regenerate the five-seed comparisons
 ```
@@ -55,7 +55,7 @@ node scripts/experiment.mjs       # regenerate the five-seed comparisons
 
 ## Evidence and interpretation
 
-The fifteen tests cover determinism, vehicle conservation, exclusive lane-cell occupancy, closures, through-only flyover access, invalid inputs, API behavior and both deployment targets. GitHub Actions runs the build and tests from a fresh checkout.
+The eighteen tests cover determinism, vehicle conservation, exclusive lane-cell occupancy, closures, through-only flyover access, invalid inputs, API behavior and both deployment targets. GitHub Actions runs the build and tests from a fresh checkout.
 
 [Recorded Vercel checks](research/vercel-verification.json) compare seven complete responses against the source model, including maximum load, another seed and zero demand. [Paired experiments](research/paired-experiments.csv) preserve twenty computed runs across five seeds.
 
