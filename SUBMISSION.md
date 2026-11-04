@@ -24,13 +24,13 @@ The demo is public and uses synthetic data. The session log is never served by t
 
 See README.md for commands, API schema, model details and verification limits. The `research` directory contains reproducible experiment CSV/JSON. The package manifest records exact source commit, git time, log snapshot hash and exported file hashes.
 
-Version 1.1 includes the refreshed typography, mobile/tablet/desktop checks, a keyboard-accessible road inspector, and a density-specific legend. Flyover access is limited to straight traffic, entrance admission is first-in-first-out, and old version 1.0 baselines are ignored. There are 18 automated checks, including the Vercel adapters and generated static UI. REQUIREMENTS.md maps each Project 2 requirement to its implementation and lists the model limits.
+Version 1.1 includes the refreshed typography, mobile/tablet/desktop checks, a keyboard-accessible road inspector, and a density-specific legend. Flyover access is limited to straight traffic, entrance admission is first-in-first-out, and old version 1.0 baselines are ignored. There are 20 automated checks, including the Vercel adapters and generated static UI. REQUIREMENTS.md maps each Project 2 requirement to its implementation and lists the model limits.
 
 ## Application rule status
 
 The first task prompt did not begin with the required `QUEST Lab Full Stack AI Pre-doctoral application, [name], [date]` line. This requirement is unmet and cannot be corrected retroactively. The raw log is preserved, and no claim of full rule compliance is made.
 
-Development and commits occurred in this chat. The package manifest records elapsed session-start-to-commit time for the 72-hour rule. No application form has been submitted.
+Initial development and later review work span multiple Codex session files. The single-session development requirement is therefore not satisfied. Preserve the original and supplementary logs separately; do not concatenate or edit them. The package manifest records elapsed session-start-to-commit time for the 72-hour rule. No application form has been submitted.
 
 ## Log handling
 

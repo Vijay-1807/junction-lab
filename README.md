@@ -25,7 +25,7 @@ npm start
 ```
 
 ```sh
-npm test                         # builds both targets, then runs all 18 checks
+npm test                         # builds both targets, then runs all 20 checks
 node scripts/validate-artifact.mjs
 node scripts/experiment.mjs       # regenerate the five-seed comparisons
 ```
@@ -55,7 +55,7 @@ node scripts/experiment.mjs       # regenerate the five-seed comparisons
 
 ## Evidence and interpretation
 
-The eighteen tests cover determinism, vehicle conservation, exclusive lane-cell occupancy, closures, through-only flyover access, invalid inputs, API behavior and both deployment targets. GitHub Actions runs the build and tests from a fresh checkout.
+The twenty tests cover determinism, vehicle conservation, exclusive lane-cell occupancy, closures, through-only flyover access, invalid inputs, API behavior and both deployment targets. GitHub Actions runs the build and tests from a fresh checkout.
 
 [Recorded Vercel checks](research/vercel-verification.json) compare seven complete responses against the source model, including maximum load, another seed and zero demand. [Paired experiments](research/paired-experiments.csv) preserve twenty computed runs across five seeds.
 
@@ -64,3 +64,5 @@ The model is intentionally small: it uses synthetic topology, coarse speed cells
 ## Application materials
 
 [SUBMISSION.md](SUBMISSION.md) provides the reviewer walkthrough, raw-log handling instructions and the known unmet opening-line requirement. The original session log and complete git history remain unchanged. Logs, credentials and local submission archives are excluded from public source and deployment assets.
+
+CSV export provides the computed queue, active vehicles, completed trips and mean speed at each sampled time. Scrubbing pauses replay; repeated map clicks select the opposite road direction.

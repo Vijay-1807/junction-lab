@@ -1,10 +1,4 @@
-Verification on 2026-11-03, version 1.1.0:
-- Worker and Vercel static builds: passed.
-- npm test: 15 passed, 0 failed, including shared Vercel function exports and generated frontend.
-- Prior browser QA: guided comparison, road inspector, density legend and responsive checks at 360/768/1440 px.
-- Model: FIFO admissions; through-only flyover; model-version-aware baseline comparisons.
-- Vercel is deployed at https://junction-lab-sepia.vercel.app/. Seven full API responses matched the source exactly; browser interaction and responsive checks passed.
-- No raw session logs or credentials are included in public source.
-Public Sites deployment remains available. The required first-prompt line remains unmet.
-
-Final reproducibility review: npm test passed all 15 checks in a new source-only directory with no existing build artifacts. pretest generates both deployment targets. GitHub Verify workflow runs the same commands on Node.js 22 with read-only permissions.
+Final review: 4 November 2026
+20 automated tests pass; both build targets pass; Worker artifact validation passes.
+Added regressions: arbitrary-duration final chart state, opposite-direction map inspection, scrub pause, computed CSV export, UTF-8 request size.
+UI changes were checked through extracted event handlers; no new visual browser inspection is claimed for this pass.
